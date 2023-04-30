@@ -57,9 +57,6 @@ namespace LAB03
            
         }
 
-      
-
-        private readonly object lockObject = new object();
 
         private void ReceiveMessage(Socket client)
         {
@@ -71,10 +68,8 @@ namespace LAB03
                     client.Receive(recv);
 
                     string message = Encoding.UTF8.GetString(recv).Replace("\0", "") + "\n";
-                    lock (lockObject)
-                    {
                         richTextBox1.Text += message;
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
